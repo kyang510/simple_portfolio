@@ -246,6 +246,13 @@
     outline: none;
 }
 
+.clickable-region:focus-visible {
+    stroke: #fff;
+    stroke-width: 4px;
+    filter: drop-shadow(0 0 3px #000);
+    vector-effect: non-scaling-stroke;
+}
+
 .sr-only {
     position: absolute;
     width: 1px;

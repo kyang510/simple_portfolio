@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import NavigationOverlay from './NavigationOverlay.jsx'
 import background from './assets/background.png'
@@ -15,6 +15,62 @@ function Background() {
   const [hoveredLayer, setHoveredLayer] = useState(null)
   const [showFightMoves, setShowFightMoves] = useState(false)
   const [showResume, setShowResume] = useState(false)
+  const resumeModalRef = useRef(null)
+  const resumeCloseButtonRef = useRef(null)
+
+  useEffect(() => {
+    if (!showResume) return undefined
+
+    const previouslyFocusedElement = document.activeElement
+    const modal = resumeModalRef.current
+
+    resumeCloseButtonRef.current?.focus()
+
+    function handleDialogKeyDown(event) {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        setShowResume(false)
+        return
+      }
+
+      if (event.key !== 'Tab' || !modal) return
+
+      const focusableElements = Array.from(
+        modal.querySelectorAll('a[href], button:not([disabled]), iframe'),
+      )
+
+      if (focusableElements.length === 0) {
+        event.preventDefault()
+        return
+      }
+
+      const firstElement = focusableElements[0]
+      const lastElement = focusableElements[focusableElements.length - 1]
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault()
+        lastElement.focus()
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault()
+        firstElement.focus()
+      }
+    }
+
+    function keepFocusInDialog(event) {
+      if (!modal?.contains(event.target)) {
+        resumeCloseButtonRef.current?.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleDialogKeyDown)
+    document.addEventListener('focusin', keepFocusInDialog)
+
+    return () => {
+      document.removeEventListener('keydown', handleDialogKeyDown)
+      document.removeEventListener('focusin', keepFocusInDialog)
+      previouslyFocusedElement?.focus()
+    }
+  }, [showResume])
 
   function layerClass(name) {
     return `scene-layer ${name}${hoveredLayer === name ? ' is-hovered' : ''}`
@@ -66,6 +122,7 @@ function Background() {
 
       {showResume && (
         <section
+          ref={resumeModalRef}
           className="resume-modal"
           role="dialog"
           aria-modal="true"
@@ -81,7 +138,11 @@ function Background() {
                 <a href={resumePdf} download="Kevin-Yang-Resume.pdf">
                   Download
                 </a>
-                <button type="button" onClick={() => setShowResume(false)}>
+                <button
+                  ref={resumeCloseButtonRef}
+                  type="button"
+                  onClick={() => setShowResume(false)}
+                >
                   Close
                 </button>
               </div>
