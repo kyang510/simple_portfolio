@@ -9,12 +9,13 @@ import hire_me from './assets/plzhire.png'
 import github from './assets/github.png'
 import fight from './assets/fight_moves.png'
 import resumePdf from './assets/kevinyang.pdf'
-
+import HobbiesLayout from './HobbiesLayout.jsx'
 
 function Background() {
   const [hoveredLayer, setHoveredLayer] = useState(null)
   const [showFightMoves, setShowFightMoves] = useState(false)
   const [showResume, setShowResume] = useState(false)
+  const [aboutContent, setAboutContent] = useState(false)
   const resumeModalRef = useRef(null)
   const resumeCloseButtonRef = useRef(null)
 
@@ -84,13 +85,16 @@ function Background() {
     if (action === 'showResume') {
       setShowResume(true)
     }
+
+    if (action === 'showAbout') {
+      setAboutContent((isVisible) => !isVisible)
+    }
   }
 
   return (
     <main className="portfolio" aria-label="Portfolio home page">
-      <h1 className="sr-only">Welcome to My Portfolio</h1>
 
-      <div className="portfolio-scene">
+      <div className={`portfolio-scene${aboutContent ? ' about-is-open' : ''}`}>
         <img src={background} alt="" className="scene-layer background" />
         <img src={me} alt="" className="scene-layer me" />
         <img src={about} alt="" className={layerClass('about')} />
@@ -119,6 +123,8 @@ function Background() {
           onAction={handleAction}
         />
       </div>
+
+      {aboutContent && <HobbiesLayout onClose={() => setAboutContent(false)} />}
 
       {showResume && (
         <section
@@ -154,6 +160,7 @@ function Background() {
           </div>
         </section>
       )}
+
     </main>
   )
 }

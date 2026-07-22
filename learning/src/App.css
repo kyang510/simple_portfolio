@@ -10,6 +10,7 @@
     position: relative;
     width: min(100vw, 177.7778vh);
     height: min(100vh, 56.25vw);
+    transition: opacity 120ms ease-out, transform 120ms ease-out;
 }
 
 .scene-layer,
@@ -24,8 +25,8 @@
     object-fit: contain;
     pointer-events: none;
     user-select: none;
-    transition: transform 180ms cubic-bezier(.2, .8, .2, 1),
-                filter 180ms ease;
+    backface-visibility: hidden;
+    transition: transform 120ms cubic-bezier(.2, .8, .2, 1);
 }
 
 .background {
@@ -37,6 +38,7 @@
 .hire_me,
 .github {
     z-index: 1;
+    will-change: transform;
 }
 
 .projects {
@@ -61,8 +63,17 @@
 
 .scene-layer.is-hovered {
     z-index: 4;
-    transform: scale(1.04) translateY(-3px);
-    filter: drop-shadow(0 8px 5px rgb(0 0 0 / 45%));
+    transform: translate3d(0, -2px, 0) scale(1.025);
+}
+
+.portfolio-scene.about-is-open {
+    opacity: .48;
+    transform: scale(.995);
+}
+
+.portfolio-scene.about-is-open > .scene-layer.is-hovered,
+.portfolio-scene.about-is-open > .resume-layer.is-hovered {
+    transform: none;
 }
 
 .resume-layer {
@@ -78,14 +89,14 @@
     clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
     pointer-events: none;
     transform-origin: center;
-    transition: transform 180ms cubic-bezier(.2, .8, .2, 1),
-                filter 180ms ease;
+    backface-visibility: hidden;
+    will-change: transform;
+    transition: transform 120ms cubic-bezier(.2, .8, .2, 1);
 }
 
 .resume-layer.is-hovered {
     z-index: 4;
-    transform: scale(1.04) translateY(-3px);
-    filter: drop-shadow(0 8px 5px rgb(0 0 0 / 45%));
+    transform: translate3d(0, -2px, 0) scale(1.025);
 }
 
 .fight {
@@ -246,6 +257,19 @@
     outline: none;
 }
 
+.region-shadow {
+    fill: rgb(0 0 0 / 42%);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(6px, 8px);
+    transition: opacity 90ms ease-out;
+}
+
+.nav-region:hover .region-shadow,
+.nav-region:focus-within .region-shadow {
+    opacity: 1;
+}
+
 .clickable-region:focus-visible {
     stroke: #fff;
     stroke-width: 4px;
@@ -253,21 +277,315 @@
     vector-effect: non-scaling-stroke;
 }
 
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
 
 @media (prefers-reduced-motion: reduce) {
+    .portfolio-scene,
     .scene-layer,
     .resume-layer {
         transition: none;
+    }
+}
+
+.hobbies-page {
+    --bag-ink: #17213c;
+    --bag-blue: #769fc9;
+    --bag-blue-dark: #5578aa;
+    --bag-blue-light: #c5e5f0;
+    --bag-paper: #f5f6e9;
+    --bag-orange: #e7a132;
+    --bag-red: #e23833;
+    position: fixed;
+    inset: 0;
+    z-index: 15;
+    display: grid;
+    place-items: center;
+    padding: 3vh 3vw;
+    color: #f5f7ff;
+    background: rgb(0 0 0 / 68%);
+    animation: hobbies-backdrop-in 110ms ease-out;
+}
+
+.hobbies-dialog {
+    position: relative;
+    width: min(92vw, 122.667vh);
+    height: min(92vh, 69vw);
+    overflow: hidden;
+    animation: hobbies-dialog-in 150ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.bag-window {
+    display: grid;
+    grid-template-rows: 72% 28%;
+    border: clamp(3px, .42vw, 7px) solid var(--bag-ink);
+    color: var(--bag-ink);
+    background: var(--bag-paper);
+    box-shadow: clamp(6px, 1vw, 16px) clamp(6px, 1vw, 16px) 0 rgb(0 0 0 / 42%);
+    image-rendering: pixelated;
+}
+
+.bag-main {
+    display: grid;
+    min-height: 0;
+    grid-template-columns: 39% 61%;
+}
+
+.bag-sidebar {
+    display: grid;
+    min-width: 0;
+    grid-template-rows: auto 1fr auto auto;
+    border-right: clamp(3px, .42vw, 7px) solid var(--bag-ink);
+    background:
+        repeating-linear-gradient(0deg, rgb(255 255 255 / 16%) 0 2px, transparent 2px 5px),
+        var(--bag-blue-light);
+}
+
+.bag-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .45em .7em;
+    border-bottom: clamp(2px, .25vw, 4px) solid #fff;
+    color: #fff;
+    background: var(--bag-blue);
+    box-shadow: 0 clamp(2px, .25vw, 4px) 0 var(--bag-blue-dark);
+    font-size: clamp(.65rem, 1.5vw, 1.35rem);
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 1px 1px 0 var(--bag-blue-dark);
+}
+
+.bag-heading small {
+    font-size: .55em;
+    letter-spacing: .08em;
+}
+
+.bag-folder-button {
+    align-self: center;
+    justify-self: center;
+    width: min(62%, 210px);
+    max-height: 95%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    filter: drop-shadow(.35em .35em 0 rgb(63 94 120 / 28%));
+    transition: transform 100ms ease-out;
+}
+
+.bag-folder-button img {
+    display: block;
+    width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.bag-folder-button:hover {
+    transform: translateY(-3px);
+}
+
+.bag-folder-button:focus-visible,
+.bag-tabs button:focus-visible,
+.bag-list button:focus-visible {
+    position: relative;
+    z-index: 2;
+    outline: clamp(2px, .25vw, 4px) solid #fff;
+    outline-offset: calc(clamp(2px, .25vw, 4px) * -1);
+}
+
+.bag-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 .45em;
+    border: clamp(2px, .25vw, 4px) solid var(--bag-ink);
+    background: #fff;
+}
+
+.bag-tabs button {
+    display: grid;
+    aspect-ratio: 1.25;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-right: clamp(1px, .16vw, 3px) solid var(--bag-blue-dark);
+    color: var(--bag-blue-dark);
+    background: #f7fbfc;
+    font: 900 clamp(.55rem, 1.2vw, 1.05rem) "Courier New", monospace;
+    cursor: pointer;
+}
+
+.bag-tabs button:last-child {
+    border-right: 0;
+}
+
+.bag-tabs button:hover,
+.bag-tabs button.is-active {
+    color: #fff;
+    background: var(--bag-red);
+}
+
+.bag-pocket-label {
+    position: relative;
+    margin-top: .45em;
+    padding: .35em .6em .3em;
+    border-top: clamp(3px, .38vw, 6px) solid var(--bag-orange);
+    color: var(--bag-blue-dark);
+    background: #fff;
+    font-size: clamp(.52rem, 1.15vw, 1rem);
+    font-weight: 900;
+    text-align: center;
+}
+
+.bag-pocket-label small {
+    position: absolute;
+    right: .5em;
+    bottom: 100%;
+    padding: .15em .45em;
+    color: #fff;
+    background: var(--bag-orange);
+    font-size: .65em;
+}
+
+.bag-list-panel {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    padding: clamp(22px, 3vw, 48px) clamp(18px, 2.8vw, 44px) clamp(12px, 1.4vw, 24px) clamp(12px, 1.4vw, 24px);
+    background:
+        repeating-linear-gradient(0deg, rgb(78 117 160 / 8%) 0 2px, transparent 2px 6px),
+        var(--bag-paper);
+}
+
+.bag-list-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: .35em 1.2em;
+    color: var(--bag-blue-dark);
+    background: #dbe8e8;
+    font-size: clamp(.45rem, .85vw, .75rem);
+    font-weight: 900;
+}
+
+.bag-list {
+    display: grid;
+    gap: .25em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bag-list button {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr auto;
+    gap: 1em;
+    padding: .3em .55em;
+    border: clamp(2px, .22vw, 4px) solid transparent;
+    color: var(--bag-ink);
+    background: transparent;
+    font: 700 clamp(.55rem, 1.25vw, 1.1rem) "Courier New", monospace;
+    text-align: left;
+    cursor: pointer;
+}
+
+.bag-list button:hover {
+    background: #fff;
+}
+
+.bag-list button.is-active {
+    border-color: var(--bag-red);
+    background: #fff;
+    box-shadow: inset 0 0 0 clamp(1px, .12vw, 2px) #fff;
+}
+
+.bag-scrollbar {
+    position: absolute;
+    top: clamp(22px, 3vw, 48px);
+    right: .35em;
+    bottom: .7em;
+    display: grid;
+    width: 1.1em;
+    grid-template-rows: auto 1fr auto;
+    color: var(--bag-blue-dark);
+    font-size: clamp(.4rem, .8vw, .7rem);
+    text-align: center;
+}
+
+.bag-scrollbar i {
+    justify-self: center;
+    width: 3px;
+    background: var(--bag-blue);
+}
+
+.bag-description {
+    display: grid;
+    min-height: 0;
+    grid-template-columns: clamp(50px, 9vw, 105px) 1fr;
+    gap: clamp(10px, 1.6vw, 24px);
+    align-items: center;
+    padding: clamp(8px, 1.3vw, 20px);
+    border-top: clamp(3px, .42vw, 7px) solid var(--bag-ink);
+    color: #fff;
+    background:
+        repeating-linear-gradient(0deg, rgb(255 255 255 / 7%) 0 2px, transparent 2px 6px),
+        var(--bag-blue-dark);
+}
+
+.bag-description-icon {
+    display: grid;
+    height: 70%;
+    place-items: center;
+    border: clamp(2px, .25vw, 4px) solid var(--bag-ink);
+    border-radius: 28%;
+    background: var(--bag-paper);
+}
+
+.bag-description-icon img {
+    display: block;
+    width: 64%;
+    max-height: 82%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.bag-description h1 {
+    margin: 0 0 .15em;
+    font-size: clamp(.7rem, 1.6vw, 1.45rem);
+    line-height: 1;
+}
+
+.bag-description p {
+    margin: 0;
+    font-size: clamp(.46rem, .9vw, .82rem);
+    line-height: 1.35;
+}
+
+.bag-description-label {
+    color: #d7ecff;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+@keyframes hobbies-backdrop-in {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes hobbies-dialog-in {
+    from {
+        opacity: 0;
+        transform: scale(.98) translateY(1%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hobbies-page,
+    .hobbies-dialog {
+        animation: none;
     }
 }
