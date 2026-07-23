@@ -395,7 +395,7 @@
 
 .bag-tabs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     margin: 0 .45em;
     border: clamp(2px, .25vw, 4px) solid var(--bag-ink);
     background: #fff;
@@ -403,7 +403,7 @@
 
 .bag-tabs button {
     display: grid;
-    aspect-ratio: 1.25;
+    aspect-ratio: 1.5;
     place-items: center;
     padding: 0;
     border: 0;
@@ -537,7 +537,7 @@
 
 .bag-description-icon {
     display: grid;
-    height: 70%;
+    height: 60%;
     place-items: center;
     border: clamp(2px, .25vw, 4px) solid var(--bag-ink);
     border-radius: 28%;
@@ -554,14 +554,14 @@
 
 .bag-description h1 {
     margin: 0 0 .15em;
-    font-size: clamp(.7rem, 1.6vw, 1.45rem);
+    font-size: 1.8em;
     line-height: 1;
 }
 
 .bag-description p {
     margin: 0;
-    font-size: clamp(.46rem, .9vw, .82rem);
-    line-height: 1.35;
+    font-size: 1em;
+    line-height: 1.15;
 }
 
 .bag-description-label {

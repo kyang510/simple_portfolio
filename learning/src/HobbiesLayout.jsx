@@ -17,8 +17,11 @@ const hobbySections = [
   },
   {
     icon: '?',
-    label: 'Gym',
-
+    label: 'Activities',
+  },
+  {
+    icon: '=',
+    label: 'Misc',
   },
 ]
 
@@ -26,38 +29,42 @@ const hobbyItems = [
   {
     label: 'Games',
     title: 'Valorant',
-    copy: 'Games are one of my favorite ways to unwind, explore new worlds, and spend time with friends.',
-    detail: 'I am drawn to experiences with clever systems, strong visual direction, and memorable stories.',
+    detail: 'I\'ve been playing since beta. I used to solo queue competitive but now I only play with my friends in a 5 stack. I play mostly because I like playing games with friends and Val is the game they play the most. I play every role. My mains are Omen, Cypher, and Jett those agents I have the most hours on. Peak rank was Ascendant 3.',
   },
   {
     label: 'Games',
     title: 'League of Legends',
-    copy: 'Games are one of my favorite ways to unwind, explore new worlds, and spend time with friends.',
-    detail: 'I am drawn to experiences with clever systems, strong visual direction, and memorable stories.',
+    detail: 'The game that I always come back to. I started playing back in COVID. I play every role but jungle, I don\'t find it fun. Reached Platinum in both mid and support. I played TFT too but not recently. This new set it ain\'t that fun in my opinion. Peak rank for both TFT and solo/duo was Platinum.'
   },
   {
     label: 'Games',
     title: 'Pokemon',
-    copy: 'Games are one of my favorite ways to unwind, explore new worlds, and spend time with friends.',
-    detail: 'I am drawn to experiences with clever systems, strong visual direction, and memorable stories.',
+    detail: 'My childhood game was Pokemon Platinum/Diamond. I remember playing it for hours and not being able to beat the Elite Four. I used to collect Pokemon cards when I was younger not so much anymore. My best card that I have is a shiny Blastoise.',
   },
   {
     label: 'Music',
     title: 'Tiffany Day',
-    copy: 'Music keeps me company while I work, travel, and experiment with new ideas.',
-    detail: 'My playlists are always changing, and I enjoy discovering sounds outside my usual rotation.',
+    detail: 'I been a fan for a while back in 2021, the song that got me was IF I DON\'T TEXT YOU FIRST. Been listening to her new album, HALO. Its soo good. ',
   },
   {
     label: 'Music',
     title: 'Keshi',
-    copy: 'Music keeps me company while I work, travel, and experiment with new ideas.',
-    detail: 'My playlists are always changing, and I enjoy discovering sounds outside my usual rotation.',
+    detail: 'My favorite artist by far. I LOVE HIS MUSIC. Found him around the time I got broken up with my ex a long time ago I around 2019. Ever since then, he\'s been the top artist in my spotify wrapped ever since. Saw him live once right after COVID was over. Went to Head In The Clouds 2022 in LA he wasn\'t even listed to preform but I think he was filling for NIKI, BEST DAY OF MY LIFE its been only down hill since.',
   },
   {
-    label: 'Gym',
+    label: 'Activities',
     title: 'Calisthenics',
-    copy: 'I like following small curiosities and learning how unfamiliar things work.',
-    detail: 'That habit often turns into a new skill, a side project, or a different way to approach a problem.',
+    detail: 'Picked up calisthenics for fun, was always a active person and got board one day and decided to give it a try. I can now do a muscle up and a front lever.',
+  },
+  {
+    label: 'Activities',
+    title: 'Weight lifting',
+    detail: 'Started weight lifting to condition for volleyball back in high school. Now for the past 3-4 years been constantly going to the gym.',
+  },
+  {
+    label: 'Activities',
+    title: 'Volleyball',
+    detail: 'Played volleyball in high school I was on the jv team during freshman year, joined the varsity team during sophomore year onwards. Was Vice Captain my junior and Captain my senior year. I played libero for jv and then played outside hitter for varsity. Haven\'t played in a while but it was fun playing and I made some great friends.',
   },
 
 ]
