@@ -63,7 +63,6 @@ function NavigationOverlay({ onAreaHover, onAction }) {
     >
       {areas.map((area) => (
         <g key={area.name} className="nav-region">
-          <polygon className="region-shadow" points={area.points} />
           <polygon
             className="clickable-region"
             points={area.points}

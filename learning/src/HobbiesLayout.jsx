@@ -23,48 +23,90 @@ const hobbySections = [
     icon: '=',
     label: 'Misc',
   },
+  {
+    icon: 'D',
+    label: 'Demo\'s',
+  },
 ]
 
 const hobbyItems = [
   {
     label: 'Games',
     title: 'Valorant',
-    detail: 'I\'ve been playing since beta. I used to solo queue competitive but now I only play with my friends in a 5 stack. I play mostly because I like playing games with friends and Val is the game they play the most. I play every role. My mains are Omen, Cypher, and Jett those agents I have the most hours on. Peak rank was Ascendant 3.',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version.svg',
+    detail: 'I\'ve been playing since beta. I used to solo queue competitive \
+    but now I only play with my friends in a 5 stack. I play mostly because I like \
+    playing games with friends and Val is the game they play the most. I play every role. \
+    My mains are Omen, Cypher, and Jett those agents I have the most hours on. Peak rank was Ascendant 3.',
   },
   {
     label: 'Games',
     title: 'League of Legends',
-    detail: 'The game that I always come back to. I started playing back in COVID. I play every role but jungle, I don\'t find it fun. Reached Platinum in both mid and support. I played TFT too but not recently. This new set it ain\'t that fun in my opinion. Peak rank for both TFT and solo/duo was Platinum.'
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/d/d8/League_of_Legends_2019_vector.svg',
+    detail: 'The game that I always come back to. I started playing back in COVID. I play every role \
+    but jungle, I don\'t find it fun. Reached Platinum in both mid and support. I played TFT too but not \
+    recently. This new set it ain\'t that fun in my opinion. Peak rank for both TFT and solo/duo was Platinum.'
   },
   {
     label: 'Games',
     title: 'Pokemon',
-    detail: 'My childhood game was Pokemon Platinum/Diamond. I remember playing it for hours and not being able to beat the Elite Four. I used to collect Pokemon cards when I was younger not so much anymore. My best card that I have is a shiny Blastoise.',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/en/c/ca/Pokemon_Platinum.png',
+    detail: 'My childhood game was Pokemon Platinum/Diamond. I remember playing it for hours and not \
+    being able to beat the Elite Four. I used to collect Pokemon cards when I was younger not so much \
+    anymore. My best card that I have is a shiny Blastoise.',
   },
   {
     label: 'Music',
     title: 'Tiffany Day',
-    detail: 'I been a fan for a while back in 2021, the song that got me was IF I DON\'T TEXT YOU FIRST. Been listening to her new album, HALO. Its soo good. ',
+    detailIcon: 'https://i.scdn.co/image/ab67616d0000b273b5b273ebd1632a05019cd75c',
+    detail: 'I been a fan for a while back in 2021, the song that got me was \
+    IF I DON\'T TEXT YOU FIRST. Been listening to her new album, HALO. Its soo good. ',
   },
   {
     label: 'Music',
     title: 'Keshi',
-    detail: 'My favorite artist by far. I LOVE HIS MUSIC. Found him around the time I got broken up with my ex a long time ago I around 2019. Ever since then, he\'s been the top artist in my spotify wrapped ever since. Saw him live once right after COVID was over. Went to Head In The Clouds 2022 in LA he wasn\'t even listed to preform but I think he was filling for NIKI, BEST DAY OF MY LIFE its been only down hill since.',
+    detailIcon: 'https://i.scdn.co/image/ab67616d0000b27394237be74edae41560152bce',
+    detail: 'My favorite artist by far. I LOVE HIS MUSIC. Found him around the\
+     time I got broken up with my ex a long time ago I around 2019. Ever since then, he\'s been \
+     the top artist in my spotify wrapped ever since. Saw him live once right after COVID was over. \
+     Went to Head In The Clouds 2022 in LA he wasn\'t even listed to preform but I think he was \
+    filling for NIKI, BEST DAY OF MY LIFE its been only down hill since.',
   },
   {
     label: 'Activities',
     title: 'Calisthenics',
-    detail: 'Picked up calisthenics for fun, was always a active person and got board one day and decided to give it a try. I can now do a muscle up and a front lever.',
+    detail: 'Picked up calisthenics for fun, was always a active person and got board one \
+    day and decided to give it a try. I can now do a muscle up and a front lever.',
   },
   {
     label: 'Activities',
     title: 'Weight lifting',
-    detail: 'Started weight lifting to condition for volleyball back in high school. Now for the past 3-4 years been constantly going to the gym.',
+    detail: 'Started weight lifting to condition for volleyball back in high school. \
+    Now for the past 3-4 years been constantly going to the gym.',
   },
   {
     label: 'Activities',
     title: 'Volleyball',
-    detail: 'Played volleyball in high school I was on the jv team during freshman year, joined the varsity team during sophomore year onwards. Was Vice Captain my junior and Captain my senior year. I played libero for jv and then played outside hitter for varsity. Haven\'t played in a while but it was fun playing and I made some great friends.',
+    detail: 'Played volleyball in high school I was on the jv team during freshman year, \
+    joined the varsity team during sophomore year onwards. Was Vice Captain my junior and \
+    Captain my senior year. I played libero for jv and then played outside hitter \
+    for varsity. Haven\'t played in a while but it was fun playing and I made some great friends.',
+    
+  },
+  {
+    label: 'Misc',
+    title: 'My Music Taste',
+    detailIcon:'https://f4.bcbits.com/img/a2869603325_16.jpg',
+    detail: 'I listen to anything. I mean a n y t h i n g. From rap, classical, EDM, J-pop, K-pop, \
+    hyper-pop all the way to nightcore, basically everything except for country I don\'t like it personally. \
+    I think OSU, the rhythm game has forever changed my music taste. I played OSU since middle school.',
+  },
+  {
+    label: 'Music',
+    title: 'Ado',
+    detailIcon: 'https://i.scdn.co/image/ab6761610000e5ebbcb1c184c322688f10cdce7a',
+    detail: 'Ado was my first japanese artist that I really fell in love with, her unique voice and style is what drew me in.\
+    There\'s something about her voice that just pulls me in.',
   },
 
 ]
@@ -205,17 +247,12 @@ function HobbiesLayout({ onClose }) {
                 </li>
               ))}
             </ul>
-            <div className="bag-scrollbar" aria-hidden="true">
-              <span>^</span>
-              <i />
-              <span>v</span>
-            </div>
           </section>
         </div>
 
         <article className="bag-description" aria-live="polite">
           <div className="bag-description-icon" aria-hidden="true">
-            <img src={hobbiesFolder} alt="" />
+            <img src={selectedItem.detailIcon} alt="" />
           </div>
           <div>
             <p className="bag-description-label">{selectedItem.label} / selected</p>

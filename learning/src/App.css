@@ -7,6 +7,8 @@
 }
 
 .portfolio-scene {
+    --nav-shadow-offset: clamp(8px, .75vw, 14px);
+    --nav-shadow-color: rgba(0, 0, 0, 0.459);
     position: relative;
     width: min(100vw, 177.7778vh);
     height: min(100vh, 56.25vw);
@@ -26,7 +28,9 @@
     pointer-events: none;
     user-select: none;
     backface-visibility: hidden;
-    transition: transform 120ms cubic-bezier(.2, .8, .2, 1);
+    transition:
+        filter 90ms ease-out,
+        transform 120ms cubic-bezier(.2, .8, .2, 1);
 }
 
 .background {
@@ -38,7 +42,7 @@
 .hire_me,
 .github {
     z-index: 1;
-    will-change: transform;
+    will-change: filter, transform;
 }
 
 .projects {
@@ -63,6 +67,13 @@
 
 .scene-layer.is-hovered {
     z-index: 4;
+    filter:
+        drop-shadow(
+            var(--nav-shadow-offset)
+            var(--nav-shadow-offset)
+            0
+            var(--nav-shadow-color)
+        );
     transform: translate3d(0, -2px, 0) scale(1.025);
 }
 
@@ -83,19 +94,35 @@
     width: 27.08%;
     height: 14.81%;
     z-index: 1;
-    background-repeat: no-repeat;
-    background-size: 369.23% 675%;
-    background-position: 49.71% 23.37%;
-    clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
     pointer-events: none;
     transform-origin: center;
     backface-visibility: hidden;
-    will-change: transform;
-    transition: transform 120ms cubic-bezier(.2, .8, .2, 1);
+    will-change: filter, transform;
+    transition:
+        filter 90ms ease-out,
+        transform 120ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.resume-layer::before {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+    background-image: var(--resume-image);
+    background-repeat: no-repeat;
+    background-size: 369.23% 675%;
+    background-position: 49.71% 23.37%;
+    content: '';
 }
 
 .resume-layer.is-hovered {
     z-index: 4;
+    filter:
+        drop-shadow(
+            var(--nav-shadow-offset)
+            var(--nav-shadow-offset)
+            0
+            var(--nav-shadow-color)
+        );
     transform: translate3d(0, -2px, 0) scale(1.025);
 }
 
@@ -257,19 +284,6 @@
     outline: none;
 }
 
-.region-shadow {
-    fill: rgb(0 0 0 / 42%);
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(6px, 8px);
-    transition: opacity 90ms ease-out;
-}
-
-.nav-region:hover .region-shadow,
-.nav-region:focus-within .region-shadow {
-    opacity: 1;
-}
-
 .clickable-region:focus-visible {
     stroke: #fff;
     stroke-width: 4px;
@@ -395,7 +409,7 @@
 
 .bag-tabs {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     margin: 0 .45em;
     border: clamp(2px, .25vw, 4px) solid var(--bag-ink);
     background: #fff;
@@ -448,7 +462,10 @@
 
 .bag-list-panel {
     position: relative;
+    display: grid;
     min-width: 0;
+    min-height: 0;
+    grid-template-rows: minmax(0, 1fr);
     overflow: hidden;
     padding: clamp(22px, 3vw, 48px) clamp(18px, 2.8vw, 44px) clamp(12px, 1.4vw, 24px) clamp(12px, 1.4vw, 24px);
     background:
@@ -472,10 +489,35 @@
 
 .bag-list {
     display: grid;
+    min-height: 0;
     gap: .25em;
+    align-content: start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-color: var(--bag-blue) transparent;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
     margin: 0;
-    padding: 0;
+    padding: 0 clamp(5px, .7vw, 11px) 0 0;
     list-style: none;
+}
+
+.bag-list::-webkit-scrollbar {
+    width: clamp(4px, .5vw, 8px);
+}
+
+.bag-list::-webkit-scrollbar-track {
+    border: clamp(1px, .12vw, 2px) solid var(--bag-blue-dark);
+    background: #dbe8e8;
+}
+
+.bag-list::-webkit-scrollbar-thumb {
+    border: clamp(1px, .12vw, 2px) solid var(--bag-blue-dark);
+    background: var(--bag-blue);
+}
+
+.bag-list::-webkit-scrollbar-thumb:hover {
+    background: var(--bag-blue-dark);
 }
 
 .bag-list button {
@@ -500,25 +542,6 @@
     border-color: var(--bag-red);
     background: #fff;
     box-shadow: inset 0 0 0 clamp(1px, .12vw, 2px) #fff;
-}
-
-.bag-scrollbar {
-    position: absolute;
-    top: clamp(22px, 3vw, 48px);
-    right: .35em;
-    bottom: .7em;
-    display: grid;
-    width: 1.1em;
-    grid-template-rows: auto 1fr auto;
-    color: var(--bag-blue-dark);
-    font-size: clamp(.4rem, .8vw, .7rem);
-    text-align: center;
-}
-
-.bag-scrollbar i {
-    justify-self: center;
-    width: 3px;
-    background: var(--bag-blue);
 }
 
 .bag-description {
@@ -546,10 +569,9 @@
 
 .bag-description-icon img {
     display: block;
-    width: 64%;
+    width: 80%;
     max-height: 82%;
     object-fit: contain;
-    image-rendering: pixelated;
 }
 
 .bag-description h1 {

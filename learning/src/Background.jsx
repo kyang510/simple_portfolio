@@ -114,7 +114,7 @@ function Background() {
         />
         <div
           className={`resume-layer${hoveredLayer === 'resume' ? ' is-hovered' : ''}`}
-          style={{ backgroundImage: `url(${background})` }}
+          style={{ '--resume-image': `url(${background})` }}
           aria-hidden="true"
         />
 
