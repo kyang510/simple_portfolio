@@ -697,18 +697,20 @@
 
 .bag-description-icon {
     display: grid;
-    height: 60%;
+    width: 100%;
+    aspect-ratio: 1;
     place-items: center;
     border: clamp(2px, .25vw, 4px) solid var(--bag-ink);
     border-radius: 28%;
     background: var(--bag-paper);
+    position: relative;
 }
 
 .bag-description-icon img {
     display: block;
     width: 80%;
-    max-height: 82%;
-    object-fit: contain;
+    max-height: 80%;
+    object-fit: cover;
 }
 
 .bag-description h1 {
