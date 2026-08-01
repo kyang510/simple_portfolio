@@ -1,5 +1,3 @@
-import './App.css'
-
 function NavigationOverlay({ onAreaHover, onAction }) {
   const areas = [
     {
@@ -24,6 +22,7 @@ function NavigationOverlay({ onAreaHover, onAction }) {
       name: 'Hire me',
       layer: 'hire_me',
       points: '617,804 1050,909 900,1058 540,929',
+      action: 'showContact',
     },
     {
       name: 'Resume',
@@ -44,7 +43,6 @@ function NavigationOverlay({ onAreaHover, onAction }) {
       return
     }
 
-    window.location.href = area.path
   }
 
   function handleKeyDown(event, area) {
@@ -62,7 +60,7 @@ function NavigationOverlay({ onAreaHover, onAction }) {
       aria-label="Portfolio navigation"
     >
       {areas.map((area) => (
-        <g key={area.name} className="nav-region">
+        <g key={area.name}>
           <polygon
             className="clickable-region"
             points={area.points}

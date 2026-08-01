@@ -209,6 +209,7 @@
     place-items: center;
     padding: 3vh 3vw;
     background: rgb(0 0 0 / 75%);
+    animation: contact-backdrop-in 140ms ease-out;
 }
 
 .resume-viewer {
@@ -221,6 +222,7 @@
     border: 3px solid #fff;
     background: #211c25;
     box-shadow: 0 14px 40px rgb(0 0 0 / 60%);
+    animation: contact-dialog-in 190ms cubic-bezier(.2, .85, .2, 1);
 }
 
 .resume-toolbar {
@@ -273,10 +275,6 @@
     background: #fff;
 }
 
-.heat-overlay {
-    z-index: 3;
-}
-
 .clickable-region {
     fill: transparent;
     cursor: pointer;
@@ -291,12 +289,135 @@
     vector-effect: non-scaling-stroke;
 }
 
+.contact-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 25;
+    display: grid;
+    place-items: center;
+    padding: clamp(18px, 4vw, 48px);
+    background: rgb(4 8 13 / 76%);
+    backdrop-filter: blur(3px);
+    animation: contact-backdrop-in 140ms ease-out;
+}
+
+.contact-dialog {
+    --contact-ink: #11151b;
+    --contact-blue-dark: #334a67;
+    --contact-paper: #eef2e8;
+    width: min(640px, 100%);
+    max-height: min(760px, 94vh);
+    overflow: auto;
+    border: clamp(3px, .35vw, 6px) solid var(--contact-ink);
+    color: var(--contact-ink);
+    background: var(--contact-paper);
+    box-shadow:
+        0 0 0 3px #f8fbf3,
+        clamp(8px, 1.2vw, 18px) clamp(8px, 1.2vw, 18px) 0 rgb(0 0 0 / 48%);
+    animation: contact-dialog-in 190ms cubic-bezier(.2, .85, .2, 1);
+}
+
+.contact-header {
+    display: flex;
+    align-items: center;
+    padding: clamp(18px, 3vw, 32px);
+    border-bottom: clamp(3px, .35vw, 6px) solid var(--contact-ink);
+    color: #fff;
+    background: var(--contact-blue-dark);
+}
+
+.contact-header h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 4vw, 2.7rem);
+    line-height: 1;
+}
+
+.contact-profile {
+    display: grid;
+    grid-template-columns: minmax(110px, 180px) minmax(0, 1fr);
+    align-items: center;
+    padding: clamp(20px, 3vw, 34px);
+    font-size: 1.5rem;
+    background:
+        repeating-linear-gradient(0deg, rgb(51 74 103 / 7%) 0 2px, transparent 2px 6px),
+        #dce9e8;
+}
+
+.contact-profile > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    object-fit: cover;
+}
+
+.contact-email {
+    display: grid;
+    grid-column: 1 / -1;
+    gap: 7px;
+    padding-top: 18px;
+    border-top: 3px solid var(--contact-ink);
+}
+
+.contact-email button {
+    justify-self: start;
+    padding: 7px 10px;
+    border: 2px solid var(--contact-ink);
+    color: #fff;
+    background: var(--contact-blue-dark);
+    font: inherit;
+    font-size: .76rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.contact-email button:hover,
+.contact-email button:focus-visible {
+    color: var(--contact-ink);
+    background: var(--contact-paper);
+    outline: 3px solid #fff;
+    outline-offset: -6px;
+}
+
+@keyframes contact-backdrop-in {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes contact-dialog-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(.96);
+    }
+}
+
+@media (max-width: 680px) {
+    .contact-backdrop {
+        align-items: end;
+        padding: 12px;
+    }
+
+    .contact-dialog {
+        max-height: calc(100vh - 24px);
+    }
+
+    .contact-profile {
+        grid-template-columns: minmax(90px, 35%) minmax(0, 1fr);
+    }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
     .portfolio-scene,
     .scene-layer,
-    .resume-layer {
+    .resume-layer,
+    .resume-modal,
+    .resume-viewer,
+    .contact-backdrop,
+    .contact-dialog {
         transition: none;
+        animation: none;
     }
 }
 
@@ -316,7 +437,7 @@
     padding: 3vh 3vw;
     color: #f5f7ff;
     background: rgb(0 0 0 / 68%);
-    animation: hobbies-backdrop-in 110ms ease-out;
+    animation: contact-backdrop-in 140ms ease-out;
 }
 
 .hobbies-dialog {
@@ -324,7 +445,7 @@
     width: min(92vw, 122.667vh);
     height: min(92vh, 69vw);
     overflow: hidden;
-    animation: hobbies-dialog-in 150ms cubic-bezier(.2, .8, .2, 1);
+    animation: contact-dialog-in 190ms cubic-bezier(.2, .85, .2, 1);
 }
 
 .bag-window {
@@ -378,6 +499,7 @@
     justify-self: center;
     width: min(62%, 210px);
     max-height: 95%;
+    overflow: hidden;
     padding: 0;
     border: 0;
     background: transparent;
@@ -392,6 +514,21 @@
     max-height: 100%;
     object-fit: contain;
     image-rendering: pixelated;
+}
+
+.bag-folder-button video {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1.2;
+    padding: .5em;
+    scale: 1.1;
+    object-fit: cover;
+    object-position: 60% center;
+}
+
+.bag-folder-button:has(video) {
+    width: min(90%, 360px);
 }
 
 .bag-folder-button:hover {
@@ -590,19 +727,6 @@
     color: #d7ecff;
     font-weight: 900;
     text-transform: uppercase;
-}
-
-@keyframes hobbies-backdrop-in {
-    from {
-        opacity: 0;
-    }
-}
-
-@keyframes hobbies-dialog-in {
-    from {
-        opacity: 0;
-        transform: scale(.98) translateY(1%);
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {

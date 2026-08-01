@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import hobbiesFolder from './assets/hobbies-folder.png'
+import calVideo from './assets/cal.mp4'
 
 const hobbySections = [
   {
@@ -31,6 +32,7 @@ const hobbySections = [
 
 const hobbyItems = [
   {
+    icon: hobbiesFolder,
     label: 'Games',
     title: 'Valorant',
     detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version.svg',
@@ -40,6 +42,7 @@ const hobbyItems = [
     My mains are Omen, Cypher, and Jett those agents I have the most hours on. Peak rank was Ascendant 3.',
   },
   {
+    icon: hobbiesFolder,
     label: 'Games',
     title: 'League of Legends',
     detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/d/d8/League_of_Legends_2019_vector.svg',
@@ -48,6 +51,7 @@ const hobbyItems = [
     recently. This new set it ain\'t that fun in my opinion. Peak rank for both TFT and solo/duo was Platinum.'
   },
   {
+    icon: hobbiesFolder,
     label: 'Games',
     title: 'Pokemon',
     detailIcon: 'https://upload.wikimedia.org/wikipedia/en/c/ca/Pokemon_Platinum.png',
@@ -56,6 +60,7 @@ const hobbyItems = [
     anymore. My best card that I have is a shiny Blastoise.',
   },
   {
+    icon: hobbiesFolder,
     label: 'Music',
     title: 'Tiffany Day',
     detailIcon: 'https://i.scdn.co/image/ab67616d0000b273b5b273ebd1632a05019cd75c',
@@ -63,6 +68,7 @@ const hobbyItems = [
     IF I DON\'T TEXT YOU FIRST. Been listening to her new album, HALO. Its soo good. ',
   },
   {
+    icon: hobbiesFolder,
     label: 'Music',
     title: 'Keshi',
     detailIcon: 'https://i.scdn.co/image/ab67616d0000b27394237be74edae41560152bce',
@@ -73,27 +79,33 @@ const hobbyItems = [
     filling for NIKI, BEST DAY OF MY LIFE its been only down hill since.',
   },
   {
+    iconVideo: calVideo,
     label: 'Activities',
     title: 'Calisthenics',
+    detailIcon: 'https://i.pinimg.com/736x/d6/cf/99/d6cf999e74448cb5d809b1f94e6cd4d5.jpg',
     detail: 'Picked up calisthenics for fun, was always a active person and got board one \
     day and decided to give it a try. I can now do a muscle up and a front lever.',
   },
   {
+    icon: hobbiesFolder,
     label: 'Activities',
     title: 'Weight lifting',
+    detailIcon: 'https://i.pinimg.com/736x/8e/81/a2/8e81a2dea4ee87cfccf724570f1772ed.jpg',
     detail: 'Started weight lifting to condition for volleyball back in high school. \
     Now for the past 3-4 years been constantly going to the gym.',
   },
   {
+    icon: hobbiesFolder,
     label: 'Activities',
     title: 'Volleyball',
+    detailIcon: 'https://pngpix.com/images/hd/haikyuu-volleyball-spike-action-zcpqlj7ov2bohbh8.jpg',
     detail: 'Played volleyball in high school I was on the jv team during freshman year, \
     joined the varsity team during sophomore year onwards. Was Vice Captain my junior and \
     Captain my senior year. I played libero for jv and then played outside hitter \
     for varsity. Haven\'t played in a while but it was fun playing and I made some great friends.',
-    
   },
   {
+    icon: hobbiesFolder,
     label: 'Misc',
     title: 'My Music Taste',
     detailIcon:'https://f4.bcbits.com/img/a2869603325_16.jpg',
@@ -102,6 +114,7 @@ const hobbyItems = [
     I think OSU, the rhythm game has forever changed my music taste. I played OSU since middle school.',
   },
   {
+    icon: hobbiesFolder,
     label: 'Music',
     title: 'Ado',
     detailIcon: 'https://i.scdn.co/image/ab6761610000e5ebbcb1c184c322688f10cdce7a',
@@ -204,7 +217,19 @@ function HobbiesLayout({ onClose }) {
               aria-label="Close About"
               onClick={onClose}
             >
-              <img src={hobbiesFolder} alt="Close the hobbies bag" />
+                {selectedItem.iconVideo ? (
+                  <video
+                    key={selectedItem.iconVideo}
+                    src={selectedItem.iconVideo}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                ) : selectedItem.icon ? (
+                  <img src={selectedItem.icon} alt="img" />
+                ) : null}
+              
             </button>
 
             <nav className="bag-tabs" aria-label="Hobby filters">
@@ -257,7 +282,7 @@ function HobbiesLayout({ onClose }) {
           <div>
             <p className="bag-description-label">{selectedItem.label} / selected</p>
             <h1 id="hobbies-title">{selectedItem.title}</h1>
-            <p>{selectedItem.copy} {selectedItem.detail}</p>
+            <p>{selectedItem.detail}</p>
           </div>
         </article>
       </div>

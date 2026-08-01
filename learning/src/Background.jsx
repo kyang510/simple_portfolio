@@ -10,12 +10,14 @@ import github from './assets/github.png'
 import fight from './assets/fight_moves.png'
 import resumePdf from './assets/kevinyang.pdf'
 import HobbiesLayout from './HobbiesLayout.jsx'
+import ContactDialog from './ContactDialog.jsx'
 
 function Background() {
   const [hoveredLayer, setHoveredLayer] = useState(null)
   const [showFightMoves, setShowFightMoves] = useState(false)
   const [showResume, setShowResume] = useState(false)
   const [aboutContent, setAboutContent] = useState(false)
+  const [showContact, setShowContact] = useState(false)
   const resumeModalRef = useRef(null)
   const resumeCloseButtonRef = useRef(null)
 
@@ -89,6 +91,10 @@ function Background() {
     if (action === 'showAbout') {
       setAboutContent((isVisible) => !isVisible)
     }
+
+    if (action === 'showContact') {
+      setShowContact(true)
+    }
   }
 
   return (
@@ -125,6 +131,8 @@ function Background() {
       </div>
 
       {aboutContent && <HobbiesLayout onClose={() => setAboutContent(false)} />}
+
+      {showContact && <ContactDialog onClose={() => setShowContact(false)} />}
 
       {showResume && (
         <section
