@@ -312,7 +312,7 @@
     color: var(--contact-ink);
     background: var(--contact-paper);
     box-shadow:
-        0 0 0 3px #f8fbf3,
+        0 0 0 3px transparent,
         clamp(8px, 1.2vw, 18px) clamp(8px, 1.2vw, 18px) 0 rgb(0 0 0 / 48%);
     animation: contact-dialog-in 190ms cubic-bezier(.2, .85, .2, 1);
 }
@@ -697,8 +697,7 @@
 
 .bag-description-icon {
     display: grid;
-    width: 100%;
-    aspect-ratio: 1;
+    height: 60%;
     place-items: center;
     border: clamp(2px, .25vw, 4px) solid var(--bag-ink);
     border-radius: 28%;
