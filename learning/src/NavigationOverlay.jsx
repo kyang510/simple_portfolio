@@ -13,7 +13,7 @@ function NavigationOverlay({ onAreaHover, onAction }) {
       url: 'https://github.com/kyang510',
     },
     {
-      name: 'About and hobbies',
+      name: 'About and Hobbies',
       layer: 'about',
       points: '638,604 1070,640 925,810 556,706',
       action: 'showAbout',

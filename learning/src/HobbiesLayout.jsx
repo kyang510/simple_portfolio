@@ -1,66 +1,68 @@
 import { useEffect, useRef, useState } from 'react'
 import hobbiesFolder from './assets/hobbies-folder.png'
 import calVideo from './assets/cal.mp4'
+const About = 'All'
 
 const hobbySections = [
   {
-    icon: '+',
-    label: 'About',
+    icon: '❗',
+    label: 'All',
   },
   {
-    icon: '>',
+    icon: '🎮',
     label: 'Games'
   },
   {
-    icon: '~',
+    icon: '🎵',
     label: 'Music',
 
   },
   {
-    icon: '?',
+    icon: '🛹',
     label: 'Activities',
-  },
+  },  
   {
-    icon: '=',
-    label: 'Misc',
-  },
-  {
-    icon: 'D',
+    icon: '📷',
     label: 'Demo\'s',
   },
+  {
+    icon: '❓',
+    label: 'Misc',
+  },
+
 ]
 
 const hobbyItems = [
   {
-    icon: hobbiesFolder,
+    icon: 'https://store-images.s-microsoft.com/image/apps.21507.13663857844271189.4c1de202-3961-4c40-a0aa-7f4f1388775a.20ed7782-0eda-4f9d-b421-4cc47492edc6',
     label: 'Games',
     title: 'Valorant',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version.svg',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version_%28cropped%29.png',
     detail: 'I\'ve been playing since beta. I used to solo queue competitive \
     but now I only play with my friends in a 5 stack. I play mostly because I like \
     playing games with friends and Val is the game they play the most. I play every role. \
     My mains are Omen, Cypher, and Jett those agents I have the most hours on. Peak rank was Ascendant 3.',
   },
   {
-    icon: hobbiesFolder,
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d8/League_of_Legends_2019_vector.svg',
     label: 'Games',
     title: 'League of Legends',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/d/d8/League_of_Legends_2019_vector.svg',
+    detailIcon: 'https://logos-world.net/wp-content/uploads/2023/02/LoL-Symbol.png',
     detail: 'The game that I always come back to. I started playing back in COVID. I play every role \
     but jungle, I don\'t find it fun. Reached Platinum in both mid and support. I played TFT too but not \
     recently. This new set it ain\'t that fun in my opinion. Peak rank for both TFT and solo/duo was Platinum.'
   },
   {
-    icon: hobbiesFolder,
+    icon: 'https://upload.wikimedia.org/wikipedia/en/c/ca/Pokemon_Platinum.png',
     label: 'Games',
     title: 'Pokemon',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/en/c/ca/Pokemon_Platinum.png',
+    detailIcon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVEWQhRYfN8n_yiaf90QB_nvKWXUkSKkSlIGt6lgqgOFfqtyx25VviMzA&s=10',
     detail: 'My childhood game was Pokemon Platinum/Diamond. I remember playing it for hours and not \
     being able to beat the Elite Four. I used to collect Pokemon cards when I was younger not so much \
     anymore. My best card that I have is a shiny Blastoise.',
   },
   {
-    icon: hobbiesFolder,
+    icon: 'https://first-avenue.com/wp-content/uploads/2022/08/TiffanyDay-GratitudeProject-PressShot1-1080x1332-1.jpg',
     label: 'Music',
     title: 'Tiffany Day',
     detailIcon: 'https://i.scdn.co/image/ab67616d0000b273b5b273ebd1632a05019cd75c',
@@ -68,7 +70,7 @@ const hobbyItems = [
     IF I DON\'T TEXT YOU FIRST. Been listening to her new album, HALO. Its soo good. ',
   },
   {
-    icon: hobbiesFolder,
+    icon: 'https://i.scdn.co/image/ab67616d0000b273617997bc09bb7fa23624eff5',
     label: 'Music',
     title: 'Keshi',
     detailIcon: 'https://i.scdn.co/image/ab67616d0000b27394237be74edae41560152bce',
@@ -87,7 +89,7 @@ const hobbyItems = [
     day and decided to give it a try. I can now do a muscle up and a front lever.',
   },
   {
-    icon: hobbiesFolder,
+    icon: 'https://i.pinimg.com/736x/43/ea/4d/43ea4ded80d43f2958e7b442e188fc0d.jpg',
     label: 'Activities',
     title: 'Weight lifting',
     detailIcon: 'https://i.pinimg.com/736x/8e/81/a2/8e81a2dea4ee87cfccf724570f1772ed.jpg',
@@ -95,7 +97,7 @@ const hobbyItems = [
     Now for the past 3-4 years been constantly going to the gym.',
   },
   {
-    icon: hobbiesFolder,
+    icon: 'https://static.vecteezy.com/system/resources/thumbnails/035/320/507/small/ai-generated-volleyball-ball-isolated-on-transparent-background-free-png.png',
     label: 'Activities',
     title: 'Volleyball',
     detailIcon: 'https://pngpix.com/images/hd/haikyuu-volleyball-spike-action-zcpqlj7ov2bohbh8.jpg',
@@ -105,7 +107,7 @@ const hobbyItems = [
     for varsity. Haven\'t played in a while but it was fun playing and I made some great friends.',
   },
   {
-    icon: hobbiesFolder,
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/3840px-Spotify_logo_without_text.svg.png',
     label: 'Misc',
     title: 'My Music Taste',
     detailIcon:'https://f4.bcbits.com/img/a2869603325_16.jpg',
@@ -114,7 +116,7 @@ const hobbyItems = [
     I think OSU, the rhythm game has forever changed my music taste. I played OSU since middle school.',
   },
   {
-    icon: hobbiesFolder,
+    icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE2pVn694DXy29DQhNTc1GUwhszXFMpPenb6UB32iTXrKR3yBcoAznVYxr&s=10',
     label: 'Music',
     title: 'Ado',
     detailIcon: 'https://i.scdn.co/image/ab6761610000e5ebbcb1c184c322688f10cdce7a',
@@ -128,17 +130,17 @@ function HobbiesLayout({ onClose }) {
   const folderButtonRef = useRef(null)
   const dialogRef = useRef(null)
   const [activeItem, setActiveItem] = useState(0)
-  const [activeFilter, setActiveFilter] = useState('About')
+  const [activeFilter, setActiveFilter] = useState(About)
   const selectedItem = hobbyItems[activeItem]
   const filteredItems = hobbyItems
     .map((item, index) => ({ item, index }))
-    .filter(({ item }) => activeFilter === 'About' || item.label === activeFilter)
+    .filter(({ item }) => activeFilter === About || item.label === activeFilter)
     .sort((a, b) => a.item.title.localeCompare(b.item.title))
 
   function selectFilter(section) {
     setActiveFilter(section.label)
 
-    const firstMatchingItem = section.label === 'About'
+    const firstMatchingItem = section.label === About
       ? 0
       : hobbyItems.findIndex((item) => item.label === section.label)
 
@@ -215,6 +217,7 @@ function HobbiesLayout({ onClose }) {
               className="bag-folder-button"
               type="button"
               aria-label="Close About"
+              title="Close About"
               onClick={onClose}
             >
                 {selectedItem.iconVideo ? (
@@ -227,7 +230,7 @@ function HobbiesLayout({ onClose }) {
                     playsInline
                   />
                 ) : selectedItem.icon ? (
-                  <img src={selectedItem.icon} alt="img" />
+                  <img src={selectedItem.icon} alt="" />
                 ) : null}
               
             </button>
@@ -239,6 +242,7 @@ function HobbiesLayout({ onClose }) {
                   className={activeFilter === section.label ? 'is-active' : ''}
                   type="button"
                   aria-label={`Filter by ${section.label}`}
+                  title={section.label}
                   aria-pressed={activeFilter === section.label}
                   onClick={() => selectFilter(section)}
                 >
@@ -275,9 +279,9 @@ function HobbiesLayout({ onClose }) {
           </section>
         </div>
 
-        <article className="bag-description" aria-live="polite">
+        <article className="bag-description"aria-live="polite">
           <div className="bag-description-icon" aria-hidden="true">
-            <img src={selectedItem.detailIcon} alt="" />
+            <img src={selectedItem.detailIcon} alt=""/>
           </div>
           <div>
             <p className="bag-description-label">{selectedItem.label} / selected</p>

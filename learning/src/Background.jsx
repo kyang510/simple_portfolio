@@ -114,8 +114,8 @@ function Background() {
         />
         <button
           type="button"
-          className={`move-option discord-cone${showFightMoves ? ' is-visible' : ''}`}
-          aria-label="Discord Cone"
+          className={`move-option select-move${showFightMoves ? ' is-visible' : ''}`}
+          aria-label="select-move"
           onClick={() => window.open('https://github.com/kyang510/dis-clone', '_blank', 'noopener,noreferrer')}
         />
         <div

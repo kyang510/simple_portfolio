@@ -159,7 +159,7 @@
     pointer-events: none;
 }
 
-.discord-cone {
+.select-move {
     left: 61.04%;
     top: 66.48%;
     width: 19.27%;
@@ -497,7 +497,7 @@
 .bag-folder-button {
     align-self: center;
     justify-self: center;
-    width: min(62%, 210px);
+    width: min(62%, 410px);
     max-height: 95%;
     overflow: hidden;
     padding: 0;
@@ -511,9 +511,6 @@
 .bag-folder-button img {
     display: block;
     width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    image-rendering: pixelated;
 }
 
 .bag-folder-button video {
@@ -702,13 +699,14 @@
     border: clamp(2px, .25vw, 4px) solid var(--bag-ink);
     border-radius: 28%;
     background: var(--bag-paper);
-    position: relative;
+    overflow: hidden;
 }
 
 .bag-description-icon img {
     display: block;
     width: 80%;
     max-height: 80%;
+    aspect-ratio: 1/1;
     object-fit: cover;
 }
 
