@@ -5,34 +5,51 @@ const About = 'All'
 
 const hobbySections = [
   {
-    icon: '❗',
+    icon: '⅀',
     label: 'All',
   },
   {
-    icon: '🎮',
+    icon: '🃏',
     label: 'Games'
   },
   {
-    icon: '🎵',
+    icon: '𝄞',
     label: 'Music',
 
   },
   {
-    icon: '🛹',
+    icon: '⍓',
     label: 'Activities',
   },  
   {
-    icon: '📷',
-    label: 'Demo\'s',
+    icon: '∬',
+    label: 'Skills',
   },
   {
-    icon: '❓',
+    icon: '✰',
     label: 'Misc',
   },
 
 ]
 
 const hobbyItems = [
+  {
+    icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE2pVn694DXy29DQhNTc1GUwhszXFMpPenb6UB32iTXrKR3yBcoAznVYxr&s=10',
+    label: 'Music',
+    title: 'Ado',
+    detailIcon: 'https://i.scdn.co/image/ab6761610000e5ebbcb1c184c322688f10cdce7a',
+    detail: 'Ado was my first japanese artist that I really fell in love with, her unique voice and style is what drew me in.\
+    There\'s something about her voice that just pulls me in.',
+  },  
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d8/League_of_Legends_2019_vector.svg',
+    label: 'Games',
+    title: 'League of Legends',
+    detailIcon: 'https://logos-world.net/wp-content/uploads/2023/02/LoL-Symbol.png',
+    detail: 'The game that I always come back to. I started playing back in COVID. I play every role \
+    but jungle, I don\'t find it fun. Reached Platinum in both mid and support. I played TFT too but not \
+    recently. This new set it ain\'t that fun in my opinion. Peak rank for both TFT and solo/duo was Platinum.'
+  },
   {
     icon: 'https://store-images.s-microsoft.com/image/apps.21507.13663857844271189.4c1de202-3961-4c40-a0aa-7f4f1388775a.20ed7782-0eda-4f9d-b421-4cc47492edc6',
     label: 'Games',
@@ -43,15 +60,7 @@ const hobbyItems = [
     playing games with friends and Val is the game they play the most. I play every role. \
     My mains are Omen, Cypher, and Jett those agents I have the most hours on. Peak rank was Ascendant 3.',
   },
-  {
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d8/League_of_Legends_2019_vector.svg',
-    label: 'Games',
-    title: 'League of Legends',
-    detailIcon: 'https://logos-world.net/wp-content/uploads/2023/02/LoL-Symbol.png',
-    detail: 'The game that I always come back to. I started playing back in COVID. I play every role \
-    but jungle, I don\'t find it fun. Reached Platinum in both mid and support. I played TFT too but not \
-    recently. This new set it ain\'t that fun in my opinion. Peak rank for both TFT and solo/duo was Platinum.'
-  },
+
   {
     icon: 'https://upload.wikimedia.org/wikipedia/en/c/ca/Pokemon_Platinum.png',
     label: 'Games',
@@ -75,9 +84,9 @@ const hobbyItems = [
     title: 'Keshi',
     detailIcon: 'https://i.scdn.co/image/ab67616d0000b27394237be74edae41560152bce',
     detail: 'My favorite artist by far. I LOVE HIS MUSIC. Found him around the\
-     time I got broken up with my ex a long time ago I around 2019. Ever since then, he\'s been \
-     the top artist in my spotify wrapped ever since. Saw him live once right after COVID was over. \
-     Went to Head In The Clouds 2022 in LA he wasn\'t even listed to preform but I think he was \
+    time I got broken up with my ex a long time ago I around 2019. Ever since then, he\'s been \
+    the top artist in my spotify wrapped ever since. Saw him live once right after COVID was over. \
+    Went to Head In The Clouds 2022 in LA he wasn\'t even listed to preform but I think he was \
     filling for NIKI, BEST DAY OF MY LIFE its been only down hill since.',
   },
   {
@@ -114,14 +123,112 @@ const hobbyItems = [
     detail: 'I listen to anything. I mean a n y t h i n g. From rap, classical, EDM, J-pop, K-pop, \
     hyper-pop all the way to nightcore, basically everything except for country I don\'t like it personally. \
     I think OSU, the rhythm game has forever changed my music taste. I played OSU since middle school.',
+  },  
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png',
+    label: 'Skills',
+    title:'C',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png',
+    detail: '',
   },
   {
-    icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE2pVn694DXy29DQhNTc1GUwhszXFMpPenb6UB32iTXrKR3yBcoAznVYxr&s=10',
-    label: 'Music',
-    title: 'Ado',
-    detailIcon: 'https://i.scdn.co/image/ab6761610000e5ebbcb1c184c322688f10cdce7a',
-    detail: 'Ado was my first japanese artist that I really fell in love with, her unique voice and style is what drew me in.\
-    There\'s something about her voice that just pulls me in.',
+    icon: 'https://nerdysoft.com/wp-content/uploads/2021/11/java-14-1.svg',
+    label: 'Skills',
+    title: 'Java',
+    detailIcon: 'https://nerdysoft.com/wp-content/uploads/2021/11/java-14-1.svg',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg',
+    label: 'Skills',
+    title: 'HTML',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg',
+    label: 'Skills',
+    title: 'CSS', 
+    detailIcon :'https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
+    label: 'Skills',
+    title: 'JavaScript',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
+    label: 'Skills',
+    title: 'React',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg',
+    label: 'Skills',
+    title: 'Node.js',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg',
+    label: 'Skills',
+    title: 'Python',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg',
+    label: 'Skills',
+    title: 'C++',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png',
+    label: 'Skills',
+    title: 'C#',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png',
+    label: 'Skills',
+    title: 'SQL',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg',
+    label: 'Skills',
+    title: 'Git',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg',
+    detail: '',
+  },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg',
+    label: 'Skills',
+    title: 'GitHub',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg',
+    detail: '',
+  },
+
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg',
+    label: 'Skills',
+    title:'Typescript',
+    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg',
+    detail: '',
+  },
+  {
+    icon: 'https://ms-azuretools.gallerycdn.vsassets.io/extensions/ms-azuretools/vscode-docker/2.0.0/1748459272971/Microsoft.VisualStudio.Services.Icons.Default',
+    label: 'Skills',
+    title:'Docker',
+    detailIcon: 'https://ms-azuretools.gallerycdn.vsassets.io/extensions/ms-azuretools/vscode-docker/2.0.0/1748459272971/Microsoft.VisualStudio.Services.Icons.Default',
+    detail: '',
   },
 
 ]
@@ -130,6 +237,7 @@ function HobbiesLayout({ onClose }) {
   const folderButtonRef = useRef(null)
   const dialogRef = useRef(null)
   const [activeItem, setActiveItem] = useState(0)
+  const [highlightedItem, setHighlightedItem] = useState(0)
   const [activeFilter, setActiveFilter] = useState(About)
   const selectedItem = hobbyItems[activeItem]
   const filteredItems = hobbyItems
@@ -144,7 +252,34 @@ function HobbiesLayout({ onClose }) {
       ? 0
       : hobbyItems.findIndex((item) => item.label === section.label)
 
-    if (firstMatchingItem >= 0) setActiveItem(firstMatchingItem)
+    if (firstMatchingItem >= 0) {
+      setActiveItem(firstMatchingItem)
+      setHighlightedItem(firstMatchingItem)
+    }
+  }
+
+  function handleItemKeyDown(event, itemPosition) {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      setActiveItem(filteredItems[itemPosition].index)
+      return
+    }
+
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
+
+    event.preventDefault()
+
+    const direction = event.key === 'ArrowDown' ? 1 : -1
+    const nextPosition = (
+      itemPosition + direction + filteredItems.length
+    ) % filteredItems.length
+    const nextItem = filteredItems[nextPosition]
+
+    setHighlightedItem(nextItem.index)
+    event.currentTarget
+      .closest('.bag-list')
+      ?.querySelectorAll('button')[nextPosition]
+      ?.focus()
   }
 
   useEffect(() => {
@@ -160,7 +295,9 @@ function HobbiesLayout({ onClose }) {
 
       if (event.key === 'Tab') {
         const focusableElements = Array.from(
-          dialogRef.current?.querySelectorAll('button:not([disabled])') ?? [],
+          dialogRef.current?.querySelectorAll(
+            'button:not([disabled]):not([tabindex="-1"])',
+          ) ?? [],
         )
         const firstElement = focusableElements[0]
         const lastElement = focusableElements.at(-1)
@@ -217,7 +354,7 @@ function HobbiesLayout({ onClose }) {
               className="bag-folder-button"
               type="button"
               aria-label="Close About"
-              title="Close About"
+              title="Close"
               onClick={onClose}
             >
                 {selectedItem.iconVideo ? (
@@ -263,12 +400,20 @@ function HobbiesLayout({ onClose }) {
               <span>QTY</span>
             </div>
             <ul className="bag-list">
-              {filteredItems.map(({ item, index }) => (
+              {filteredItems.map(({ item, index }, itemPosition) => (
                 <li key={item.title}>
                   <button
-                    className={activeItem === index ? 'is-active' : ''}
+                    className={[
+                      activeItem === index ? 'is-active' : '',
+                      highlightedItem === index ? 'is-highlighted' : '',
+                    ].filter(Boolean).join(' ')}
                     type="button"
-                    onClick={() => setActiveItem(index)}
+                    tabIndex={highlightedItem === index ? 0 : -1}
+                    onClick={() => {
+                      setActiveItem(index)
+                      setHighlightedItem(index)
+                    }}
+                    onKeyDown={(event) => handleItemKeyDown(event, itemPosition)}
                   >
                     <span>{item.title}</span>
                     <span aria-label="quantity 1">x 1</span>

@@ -1,11 +1,5 @@
 :root {
-  /*"MS PGothic", "ＭＳ Ｐゴシック", 
-  Courier New
-  */
   font-family: "Courier New", ui-monospace, monospace;
-  color-scheme: dark;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
 }
 
 * {
