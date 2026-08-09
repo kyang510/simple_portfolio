@@ -1,54 +1,41 @@
-function NavigationOverlay({ onAreaHover, onAction }) {
+function NavigationOverlay({ onAreaHover, onToggleFightMoves, onOpenDialog }) {
   const areas = [
     {
       name: 'Projects',
       layer: 'projects',
       points: '8,675 356,624 430,740 45,846',
-      action: 'showFightMoves',
+      activate: onToggleFightMoves,
     },
     {
       name: 'GitHub',
       layer: 'github',
       points: '4,902 356,820 398,930 93,1066',
-      url: 'https://github.com/kyang510',
+      activate: () => window.open('https://github.com/kyang510', '_blank', 'noopener,noreferrer'),
     },
     {
       name: 'About and Hobbies',
       layer: 'about',
       points: '638,604 1070,640 925,810 556,706',
-      action: 'showAbout',
+      activate: () => onOpenDialog('about'),
     },
     {
       name: 'Hire me',
       layer: 'hire_me',
       points: '617,804 1050,909 900,1058 540,929',
-      action: 'showContact',
+      activate: () => onOpenDialog('contact'),
     },
     {
       name: 'Resume',
       layer: 'resume',
       points: '700,219 1210,219 1117,370 700,370',
-      action: 'showResume',
+      activate: () => onOpenDialog('resume'),
     },
   ]
 
-  function handleClick(area) {
-    if (area.action) {
-      onAction(area.action)
-      return
-    }
-
-    if (area.url) {
-      window.open(area.url, '_blank', 'noopener,noreferrer')
-      return
-    }
-
-  }
-
-  function handleKeyDown(event, area) {
+  function handleKeyDown(event, activate) {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
-      handleClick(area)
+      activate()
     }
   }
 
@@ -69,8 +56,8 @@ function NavigationOverlay({ onAreaHover, onAction }) {
             aria-label={area.name}
             onPointerEnter={() => onAreaHover(area.layer ?? null)}
             onPointerLeave={() => onAreaHover(null)}
-            onClick={() => handleClick(area)}
-            onKeyDown={(event) => handleKeyDown(event, area)}
+            onClick={area.activate}
+            onKeyDown={(event) => handleKeyDown(event, area.activate)}
           >
             <title>{area.name}</title>
           </polygon>

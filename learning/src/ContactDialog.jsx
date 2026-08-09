@@ -1,71 +1,14 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
+import Modal from './Modal.jsx'
 
 const contactEmail = 'kevyang386@gmail.com'
 
 function ContactDialog({ onClose }) {
-  const dialogRef = useRef(null)
-  const copyButtonRef = useRef(null)
   const [copied, setCopied] = useState(false)
-
-  useEffect(() => {
-    const previouslyFocusedElement = document.activeElement
-    const dialog = dialogRef.current
-
-    copyButtonRef.current?.focus()
-
-    function handleKeyDown(event) {
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        onClose()
-        return
-      }
-
-      if (event.key !== 'Tab' || !dialog) return
-
-      const focusableElements = Array.from(
-        dialog.querySelectorAll('button:not([disabled])'),
-      )
-      const firstElement = focusableElements[0]
-      const lastElement = focusableElements.at(-1)
-
-      if (event.shiftKey && document.activeElement === firstElement) {
-        event.preventDefault()
-        lastElement?.focus()
-      } else if (!event.shiftKey && document.activeElement === lastElement) {
-        event.preventDefault()
-        firstElement?.focus()
-      }
-    }
-
-    function keepFocusInDialog(event) {
-      if (!dialog?.contains(event.target)) copyButtonRef.current?.focus()
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-    document.addEventListener('focusin', keepFocusInDialog)
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.removeEventListener('focusin', keepFocusInDialog)
-      previouslyFocusedElement?.focus()
-    }
-  }, [onClose])
 
   async function copyEmail() {
     try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(contactEmail)
-      } else {
-        const copyField = document.createElement('textarea')
-        copyField.value = contactEmail
-        copyField.setAttribute('readonly', '')
-        copyField.style.position = 'fixed'
-        copyField.style.opacity = '0'
-        document.body.appendChild(copyField)
-        copyField.select()
-        document.execCommand('copy')
-        copyField.remove()
-      }
+      await navigator.clipboard.writeText(contactEmail)
       setCopied(true)
       window.setTimeout(() => setCopied(false), 1800)
     } catch {
@@ -74,17 +17,12 @@ function ContactDialog({ onClose }) {
   }
 
   return (
-    <section
+    <Modal
       className="contact-backdrop"
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget) onClose()
-      }}
+      onClose={onClose}
     >
       <div
-        ref={dialogRef}
         className="contact-dialog"
-        role="dialog"
-        aria-modal="true"
         aria-labelledby="contact-title"
       >
         <header className="contact-header">
@@ -104,13 +42,13 @@ function ContactDialog({ onClose }) {
           <div className="contact-email">
             <span>EMAIL</span>
             <strong>{contactEmail}</strong>
-            <button ref={copyButtonRef} type="button" onClick={copyEmail}>
+            <button autoFocus type="button" onClick={copyEmail}>
               {copied ? 'Copied!' : 'Copy email'}
             </button>
           </div>
         </div>
       </div>
-    </section>
+    </Modal>
   )
 }
 

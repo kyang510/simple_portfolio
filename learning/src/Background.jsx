@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import NavigationOverlay from './NavigationOverlay.jsx'
+import Modal from './Modal.jsx'
 import background from './assets/background.png'
 import me from './assets/me.png'
 import about from './assets/about.png'
@@ -15,92 +16,16 @@ import ContactDialog from './ContactDialog.jsx'
 function Background() {
   const [hoveredLayer, setHoveredLayer] = useState(null)
   const [showFightMoves, setShowFightMoves] = useState(false)
-  const [showResume, setShowResume] = useState(false)
-  const [aboutContent, setAboutContent] = useState(false)
-  const [showContact, setShowContact] = useState(false)
-  const resumeModalRef = useRef(null)
-  const resumeCloseButtonRef = useRef(null)
-
-  useEffect(() => {
-    if (!showResume) return undefined
-
-    const previouslyFocusedElement = document.activeElement
-    const modal = resumeModalRef.current
-
-    resumeCloseButtonRef.current?.focus()
-
-    function handleDialogKeyDown(event) {
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        setShowResume(false)
-        return
-      }
-
-      if (event.key !== 'Tab' || !modal) return
-
-      const focusableElements = Array.from(
-        modal.querySelectorAll('a[href], button:not([disabled]), iframe'),
-      )
-
-      if (focusableElements.length === 0) {
-        event.preventDefault()
-        return
-      }
-
-      const firstElement = focusableElements[0]
-      const lastElement = focusableElements[focusableElements.length - 1]
-
-      if (event.shiftKey && document.activeElement === firstElement) {
-        event.preventDefault()
-        lastElement.focus()
-      } else if (!event.shiftKey && document.activeElement === lastElement) {
-        event.preventDefault()
-        firstElement.focus()
-      }
-    }
-
-    function keepFocusInDialog(event) {
-      if (!modal?.contains(event.target)) {
-        resumeCloseButtonRef.current?.focus()
-      }
-    }
-
-    document.addEventListener('keydown', handleDialogKeyDown)
-    document.addEventListener('focusin', keepFocusInDialog)
-
-    return () => {
-      document.removeEventListener('keydown', handleDialogKeyDown)
-      document.removeEventListener('focusin', keepFocusInDialog)
-      previouslyFocusedElement?.focus()
-    }
-  }, [showResume])
+  const [activeDialog, setActiveDialog] = useState(null)
 
   function layerClass(name) {
     return `scene-layer ${name}${hoveredLayer === name ? ' is-hovered' : ''}`
   }
 
-  function handleAction(action) {
-    if (action === 'showFightMoves') {
-      setShowFightMoves((isVisible) => !isVisible)
-    }
-
-    if (action === 'showResume') {
-      setShowResume(true)
-    }
-
-    if (action === 'showAbout') {
-      setAboutContent((isVisible) => !isVisible)
-    }
-
-    if (action === 'showContact') {
-      setShowContact(true)
-    }
-  }
-
   return (
     <main className="portfolio" aria-label="Portfolio home page">
 
-      <div className={`portfolio-scene${aboutContent ? ' about-is-open' : ''}`}>
+      <div className={`portfolio-scene${activeDialog === 'about' ? ' about-is-open' : ''}`}>
         <img src={background} alt="" className="scene-layer background" />
         <img src={me} alt="" className="scene-layer me" />
         <img src={about} alt="" className={layerClass('about')} />
@@ -114,7 +39,7 @@ function Background() {
         />
         <button
           type="button"
-          className={`move-option select-move${showFightMoves ? ' is-visible' : ''}`}
+          className={`move-option${showFightMoves ? ' is-visible' : ''}`}
           aria-label="select-move"
           onClick={() => window.open('https://github.com/kyang510/dis-clone', '_blank', 'noopener,noreferrer')}
         />
@@ -126,24 +51,20 @@ function Background() {
 
         <NavigationOverlay
           onAreaHover={setHoveredLayer}
-          onAction={handleAction}
+          onToggleFightMoves={() => setShowFightMoves((isVisible) => !isVisible)}
+          onOpenDialog={setActiveDialog}
         />
       </div>
 
-      {aboutContent && <HobbiesLayout onClose={() => setAboutContent(false)} />}
+      {activeDialog === 'about' && <HobbiesLayout onClose={() => setActiveDialog(null)} />}
 
-      {showContact && <ContactDialog onClose={() => setShowContact(false)} />}
+      {activeDialog === 'contact' && <ContactDialog onClose={() => setActiveDialog(null)} />}
 
-      {showResume && (
-        <section
-          ref={resumeModalRef}
+      {activeDialog === 'resume' && (
+        <Modal
           className="resume-modal"
-          role="dialog"
-          aria-modal="true"
           aria-labelledby="resume-title"
-          onClick={(event) => {
-            if (event.target === event.currentTarget) setShowResume(false)
-          }}
+          onClose={() => setActiveDialog(null)}
         >
           <div className="resume-viewer">
             <div className="resume-toolbar">
@@ -153,9 +74,9 @@ function Background() {
                   Download
                 </a>
                 <button
-                  ref={resumeCloseButtonRef}
+                  autoFocus
                   type="button"
-                  onClick={() => setShowResume(false)}
+                  onClick={() => setActiveDialog(null)}
                 >
                   Close
                 </button>
@@ -166,7 +87,7 @@ function Background() {
               title="Kevin Yang Resume preview"
             />
           </div>
-        </section>
+        </Modal>
       )}
 
     </main>

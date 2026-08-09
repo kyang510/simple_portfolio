@@ -157,9 +157,6 @@
     background: transparent;
     cursor: pointer;
     pointer-events: none;
-}
-
-.select-move {
     left: 61.04%;
     top: 66.48%;
     width: 19.27%;
@@ -205,11 +202,20 @@
     position: fixed;
     inset: 0;
     z-index: 20;
-    display: grid;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    border: 0;
     place-items: center;
     padding: 3vh 3vw;
     background: rgb(0 0 0 / 75%);
     animation: contact-backdrop-in 140ms ease-out;
+}
+
+.resume-modal[open] {
+    display: grid;
 }
 
 .resume-viewer {
@@ -237,6 +243,7 @@
 
 .resume-toolbar h2 {
     margin: 0;
+    color: #fff;
     font-size: clamp(.9rem, 2vw, 1.25rem);
 }
 
@@ -293,12 +300,21 @@
     position: fixed;
     inset: 0;
     z-index: 25;
-    display: grid;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    border: 0;
     place-items: center;
     padding: clamp(18px, 4vw, 48px);
     background: rgb(4 8 13 / 76%);
     backdrop-filter: blur(3px);
     animation: contact-backdrop-in 140ms ease-out;
+}
+
+.contact-backdrop[open] {
+    display: grid;
 }
 
 .contact-dialog {
@@ -432,12 +448,21 @@
     position: fixed;
     inset: 0;
     z-index: 15;
-    display: grid;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    border: 0;
     place-items: center;
     padding: 3vh 3vw;
     color: #f5f7ff;
     background: rgb(0 0 0 / 68%);
     animation: contact-backdrop-in 140ms ease-out;
+}
+
+.hobbies-page[open] {
+    display: grid;
 }
 
 .hobbies-dialog {
@@ -663,7 +688,7 @@
     border: clamp(2px, .22vw, 4px) solid transparent;
     color: var(--bag-ink);
     background: transparent;
-    font: 700 clamp(.55rem, 1.25vw, 1.1rem) "Courier New", monospace;
+    font: 700 clamp(1.25rem, 1.25vw, 1.1rem) "Courier New", monospace;
     text-align: left;
     cursor: pointer;
 }
@@ -691,6 +716,7 @@
     background:
         repeating-linear-gradient(0deg, rgb(255 255 255 / 7%) 0 2px, transparent 2px 6px),
         var(--bag-blue-dark);
+    overflow:auto;
 }
 
 .bag-description-icon {
@@ -701,6 +727,7 @@
     border-radius: 28%;
     background: var(--bag-paper);
     overflow: hidden;
+    aspect-ratio: 1/1;
 }
 
 .bag-description-icon img {

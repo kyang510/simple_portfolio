@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import hobbiesFolder from './assets/hobbies-folder.png'
+import { useState } from 'react'
 import calVideo from './assets/cal.mp4'
+import Modal from './Modal.jsx'
 const About = 'All'
 
 const hobbySections = [
@@ -128,91 +128,78 @@ const hobbyItems = [
     icon: 'https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png',
     label: 'Skills',
     title:'C',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png',
     detail: '',
   },
   {
     icon: 'https://nerdysoft.com/wp-content/uploads/2021/11/java-14-1.svg',
     label: 'Skills',
     title: 'Java',
-    detailIcon: 'https://nerdysoft.com/wp-content/uploads/2021/11/java-14-1.svg',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg',
     label: 'Skills',
     title: 'HTML',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg',
     label: 'Skills',
     title: 'CSS', 
-    detailIcon :'https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
     label: 'Skills',
     title: 'JavaScript',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
     label: 'Skills',
     title: 'React',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg',
     label: 'Skills',
     title: 'Node.js',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg',
     label: 'Skills',
     title: 'Python',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg',
     label: 'Skills',
     title: 'C++',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png',
     label: 'Skills',
     title: 'C#',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png',
     label: 'Skills',
     title: 'SQL',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg',
     label: 'Skills',
     title: 'Git',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg',
     detail: '',
   },
   {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg',
     label: 'Skills',
     title: 'GitHub',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg',
     detail: '',
   },
 
@@ -220,22 +207,18 @@ const hobbyItems = [
     icon: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg',
     label: 'Skills',
     title:'Typescript',
-    detailIcon: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg',
     detail: '',
   },
   {
     icon: 'https://ms-azuretools.gallerycdn.vsassets.io/extensions/ms-azuretools/vscode-docker/2.0.0/1748459272971/Microsoft.VisualStudio.Services.Icons.Default',
     label: 'Skills',
     title:'Docker',
-    detailIcon: 'https://ms-azuretools.gallerycdn.vsassets.io/extensions/ms-azuretools/vscode-docker/2.0.0/1748459272971/Microsoft.VisualStudio.Services.Icons.Default',
     detail: '',
   },
 
 ]
 
 function HobbiesLayout({ onClose }) {
-  const folderButtonRef = useRef(null)
-  const dialogRef = useRef(null)
   const [activeItem, setActiveItem] = useState(0)
   const [highlightedItem, setHighlightedItem] = useState(0)
   const [activeFilter, setActiveFilter] = useState(About)
@@ -282,64 +265,13 @@ function HobbiesLayout({ onClose }) {
       ?.focus()
   }
 
-  useEffect(() => {
-    const previouslyFocusedElement = document.activeElement
-    folderButtonRef.current?.focus()
-
-    function handleKeyDown(event) {
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        onClose()
-        return
-      }
-
-      if (event.key === 'Tab') {
-        const focusableElements = Array.from(
-          dialogRef.current?.querySelectorAll(
-            'button:not([disabled]):not([tabindex="-1"])',
-          ) ?? [],
-        )
-        const firstElement = focusableElements[0]
-        const lastElement = focusableElements.at(-1)
-
-        if (event.shiftKey && document.activeElement === firstElement) {
-          event.preventDefault()
-          lastElement?.focus()
-        } else if (!event.shiftKey && document.activeElement === lastElement) {
-          event.preventDefault()
-          firstElement?.focus()
-        }
-      }
-    }
-
-    function keepFocusInDialog(event) {
-      if (!dialogRef.current?.contains(event.target)) {
-        folderButtonRef.current?.focus()
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-    document.addEventListener('focusin', keepFocusInDialog)
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.removeEventListener('focusin', keepFocusInDialog)
-      previouslyFocusedElement?.focus()
-    }
-  }, [onClose])
-
   return (
-    <section
+    <Modal
       className="hobbies-page"
-      onClick={(event) => {
-        if (event.target === event.currentTarget) onClose()
-      }}
+      onClose={onClose}
     >
       <div
-        ref={dialogRef}
         className="hobbies-dialog bag-window"
-        role="dialog"
-        aria-modal="true"
         aria-labelledby="hobbies-title"
       >
         <div className="bag-main">
@@ -350,7 +282,7 @@ function HobbiesLayout({ onClose }) {
             </header>
 
             <button
-              ref={folderButtonRef}
+              autoFocus
               className="bag-folder-button"
               type="button"
               aria-label="Close About"
@@ -426,7 +358,7 @@ function HobbiesLayout({ onClose }) {
 
         <article className="bag-description"aria-live="polite">
           <div className="bag-description-icon" aria-hidden="true">
-            <img src={selectedItem.detailIcon} alt=""/>
+            <img src={selectedItem.detailIcon ?? selectedItem.icon} alt=""/>
           </div>
           <div>
             <p className="bag-description-label">{selectedItem.label} / selected</p>
@@ -435,7 +367,7 @@ function HobbiesLayout({ onClose }) {
           </div>
         </article>
       </div>
-    </section>
+    </Modal>
   )
 }
 
