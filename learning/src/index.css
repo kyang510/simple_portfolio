@@ -18,3 +18,24 @@ body,
 body {
   background: #000;
 }
+
+.back-to-apple {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 30;
+  padding: 8px 12px;
+  border: 2px solid #fff;
+  color: #fff;
+  background: #211c25;
+  font: inherit;
+  cursor: pointer;
+}
+
+.back-to-apple:hover,
+.back-to-apple:focus-visible {
+  color: #211c25;
+  background: #fff;
+  outline: 2px solid #211c25;
+  outline-offset: 2px;
+}

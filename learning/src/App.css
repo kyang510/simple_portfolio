@@ -4,6 +4,7 @@
     overflow: hidden;
     display: grid;
     place-items: center;
+    font-family: "Courier New", ui-monospace, monospace;
 }
 
 .portfolio-scene {
