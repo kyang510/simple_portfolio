@@ -213,7 +213,6 @@ function Apple({ onOpenMain }) {
       document.documentElement.classList.add('has-anime')
       const { animate, createTimeline, stagger } = window.anime
       entranceAnimation = createTimeline({ defaults: { duration: 720, ease: 'outExpo' } })
-        .add(page.querySelector('.site-header'), { opacity: { from: 0 }, y: { from: -18 }, duration: 520 }, 0)
         .add(page.querySelector('.hero-copy'), { opacity: 1, y: 0 }, 0)
         .add(page.querySelectorAll('.hero-copy > *'), {
           opacity: { from: 0 },
