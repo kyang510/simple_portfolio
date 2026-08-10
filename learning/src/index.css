@@ -19,11 +19,16 @@ body {
   background: #000;
 }
 
-.back-to-apple {
+.portfolio-controls {
   position: fixed;
   top: 16px;
   left: 16px;
   z-index: 30;
+  display: grid;
+  gap: 8px;
+}
+
+.back-to-apple {
   padding: 8px 12px;
   border: 2px solid #fff;
   color: #fff;
@@ -38,4 +43,19 @@ body {
   background: #fff;
   outline: 2px solid #211c25;
   outline-offset: 2px;
+}
+
+.volume-control {
+  display: grid;
+  gap: 4px;
+  padding: 8px 10px;
+  border: 2px solid #fff;
+  color: #fff;
+  background: #211c25;
+  font-size: .8rem;
+}
+
+.volume-control input {
+  width: 120px;
+  cursor: pointer;
 }

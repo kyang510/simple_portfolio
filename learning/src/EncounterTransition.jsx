@@ -11,7 +11,7 @@ function EncounterTransition({ onCovered }) {
 
     const total = columns * rows
     const longestPath = Math.floor((total - 1) / 2)
-    const step = Math.max(6, Math.min(24, 1050 / longestPath))
+    const step = Math.max(12, Math.min(48, 2100 / longestPath))
     const tiles = Array.from({ length: total }, (_, index) => {
       const row = Math.floor(index / columns)
       const column = index % columns
