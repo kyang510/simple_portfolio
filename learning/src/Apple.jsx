@@ -5,6 +5,7 @@ import project4 from './assets/project-4.png'
 import resumePdf from './assets/kevinyang.pdf'
 
 const email = 'kevyang386@gmail.com'
+const emailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`
 const filters = ['All', 'Music', 'Games', 'Activities']
 const navigation = ['work', 'about', 'toolkit', 'contact']
 const interests = [
@@ -345,11 +346,12 @@ function Apple({ onOpenMain }) {
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-copy reveal">
             <p className="eyebrow"><span className="status-dot"></span>Available for opportunities</p>
-            <h1 id="hero-title">I build software that feels <span>effortless.</span></h1>
-            <p className="hero-intro">I’m Kevin, a full-stack software engineer and Computer Science student focused on responsive interfaces, real-time systems, and the details that make products feel alive.</p>
+            <h1 id="hero-title">I Build <span>Products.</span></h1>
+            <p className="hero-intro">I’m Kevin, an inspiring full-stack software engineer and Computer Science student
+              focused on responsive interfaces, real-time systems, and the details that make products feel alive.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
-              <a className="button button-secondary" href={`mailto:${email}`}>Let’s talk <span aria-hidden="true">↗</span></a>
+              <a className="button button-secondary" href={emailUrl} target="_blank" rel="noreferrer">Let’s talk <span aria-hidden="true">↗</span></a>
             </div>
           </div>
 
@@ -412,7 +414,6 @@ function Apple({ onOpenMain }) {
                   </button>
                 ))}
               </div>
-              <p>Light and dark appearances with configurable audio and display settings</p>
             </div>
           </article>
 
@@ -427,15 +428,16 @@ function Apple({ onOpenMain }) {
         <section className="about-section section" id="about" aria-labelledby="about-title">
           <div className="section-heading reveal">
             <p className="eyebrow">About me</p>
-            <h2 id="about-title">Curious by default.<br />Intentional by design.</h2>
+            <h2 id="about-title">Fine Tuned<br />Intentional designed</h2>
           </div>
 
           <div className="bento-grid">
             <article className="bento bento-story reveal">
               <p className="card-label">My story</p>
-              <h3>I turn ideas into products people can actually use.</h3>
-              <p>I’m studying Computer Science at Cal State East Bay after completing my associate degree at Contra Costa College. I care about the full experience—from database structure to the last interaction on screen.</p>
-              <button className="text-link button-link" type="button" onClick={() => setResumeOpen(true)}>Read my résumé <span aria-hidden="true">→</span></button>
+              <h3>I turn ideas into products.</h3>
+              <p>I’m studying Computer Science at Cal State East Bay after completing my associate degree at Contra Costa College. 
+                I care about the experience from the users end and quality of life things that get overlooked.</p>
+              <button className="text-link button-link" type="button" onClick={() => setResumeOpen(true)}>Resume <span aria-hidden="true">→</span></button>
             </article>
 
             <article className="bento bento-location reveal">
@@ -450,19 +452,20 @@ function Apple({ onOpenMain }) {
               <div>
                 <p className="card-label">Based in</p>
                 <h3>California, USA</h3>
-                <p>Open to thoughtful teams and ambitious products.</p>
+                <p>Bay Area Local</p>
               </div>
             </article>
 
             <article className="bento bento-interests reveal">
-              <div className="interest-orbit" aria-hidden="true">
-                <span>♫</span><span>⌁</span><span>△</span><span>◎</span>
-                <b>KY</b>
+              <div className="interest-stack">
+                <button type="button" onClick={() => { setFilter('Music'); setInterestsOpen(true) }}><i aria-hidden="true">♫</i><b>Music</b><small aria-hidden="true">ON REPEAT</small></button>
+                <button type="button" onClick={() => { setFilter('Games'); setInterestsOpen(true) }}><i aria-hidden="true">◆</i><b>Gaming</b><small aria-hidden="true">LOCK IN</small></button>
+                <button type="button" onClick={() => { setFilter('Activities'); setInterestsOpen(true) }}><i aria-hidden="true">↗</i><b>Activities</b><small aria-hidden="true">OFFLINE MODE</small></button>
               </div>
               <div>
                 <p className="card-label">Off the clock</p>
-                <h3>Music, movement, games & more.</h3>
-                <button className="text-link button-link" type="button" onClick={() => setInterestsOpen(true)}>Explore my interests <span aria-hidden="true">→</span></button>
+                <h3>Music, activities, games & more.</h3>
+                <button className="text-link button-link" type="button" onClick={() => { setFilter('All'); setInterestsOpen(true) }}>Explore my interests <span aria-hidden="true">→</span></button>
               </div>
             </article>
 
@@ -477,13 +480,13 @@ function Apple({ onOpenMain }) {
         <section className="toolkit-section section" id="toolkit" aria-labelledby="toolkit-title">
           <div className="section-heading reveal">
             <p className="eyebrow">Toolkit</p>
-            <h2 id="toolkit-title">The right tools.<br />Used with purpose.</h2>
+            <h2 id="toolkit-title">The right tools<br />Used with intention</h2>
           </div>
           <div className="toolkit-grid reveal">
-            <article><div className="tool-icon icon-code" aria-hidden="true">&lt;/&gt;</div><h3>Languages</h3><p>TypeScript · JavaScript · Python · Java · C · C++ · SQL</p></article>
-            <article><div className="tool-icon icon-ui" aria-hidden="true">◫</div><h3>Interface</h3><p>React · HTML · CSS · responsive systems · accessibility</p></article>
-            <article><div className="tool-icon icon-server" aria-hidden="true">⌘</div><h3>Systems</h3><p>Node.js · Express · Socket.IO · WebRTC · MySQL · Electron</p></article>
-            <article><div className="tool-icon icon-ship" aria-hidden="true">◇</div><h3>Ship</h3><p>Docker · Git · GitHub · cross-platform development</p></article>
+            <article><div className="tool-icon icon-code" aria-hidden="true">&lt;/&gt;</div><h3>Languages</h3><p>TypeScript · JavaScript · Python · Java · C · C# · C++ </p></article>
+            <article><div className="tool-icon icon-ui" aria-hidden="true">◫</div><h3>Interface</h3><p>React · HTML · CSS · Animations</p></article>
+            <article><div className="tool-icon icon-server" aria-hidden="true">⌘</div><h3>Systems</h3><p>Node.js · Socket.IO · WebRTC · MySQL · Electron</p></article>
+            <article><div className="tool-icon icon-ship" aria-hidden="true">◇</div><h3>Ship</h3><p>Docker · Git · GitHub</p></article>
           </div>
         </section>
 
@@ -491,10 +494,10 @@ function Apple({ onOpenMain }) {
           <div className="contact-layout">
             <div className="contact-copy reveal">
               <p className="eyebrow">Start a conversation</p>
-              <h2 id="contact-title">Let’s build something<br /><span>worth using.</span></h2>
+              <h2 id="contact-title">Let’s build something<br /><span>worth using</span></h2>
               <p>Have a role, project, or internship in mind? I’d love to hear about it.</p>
               <div className="contact-actions">
-                <a className="button button-light" href={`mailto:${email}`}>Send me an email <span aria-hidden="true">↗</span></a>
+                <a className="button button-light" href={emailUrl} target="_blank" rel="noreferrer">Send me an email <span aria-hidden="true">↗</span></a>
                 <button className="copy-button" type="button" onClick={copyEmail}><span>{email}</span><b>Copy</b></button>
               </div>
             </div>
@@ -540,7 +543,7 @@ function Apple({ onOpenMain }) {
       <Dialog className="modal" open={interestsOpen} onClose={() => setInterestsOpen(false)} aria-labelledby="interests-title">
         <div className="modal-shell interests-shell">
           <header className="modal-header">
-            <div><p className="card-label">Beyond the screen</p><h2 id="interests-title">Things I’m into.</h2></div>
+            <div><p className="card-label">Beyond the screen</p><h2 id="interests-title">Hobbies & Interests </h2></div>
             <button className="close-button" type="button" onClick={() => setInterestsOpen(false)} aria-label="Close interests">×</button>
           </header>
           <div className="filter-tabs" role="tablist" aria-label="Interest filters">
