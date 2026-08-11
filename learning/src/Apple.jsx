@@ -346,7 +346,7 @@ function Apple({ onOpenMain }) {
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-copy reveal">
             <p className="eyebrow"><span className="status-dot"></span>Available for opportunities</p>
-            <h1 id="hero-title">I Build <span>Products.</span></h1>
+            <h1 id="hero-title">I build <span>Products</span></h1>
             <p className="hero-intro">I’m Kevin, an inspiring full-stack software engineer and Computer Science student
               focused on responsive interfaces, real-time systems, and the details that make products feel alive.</p>
             <div className="hero-actions">
@@ -392,7 +392,7 @@ function Apple({ onOpenMain }) {
               <div>
                 <p className="project-number">01 / Featured project</p>
                 <h3>Real-time voice<br />& text platform</h3>
-                <p>A Discord-inspired desktop application with live messaging, voice channels, secure authentication, and synchronized channel state.</p>
+                <p>A Discord inspired desktop application with live messaging, voice channels, secure authentication, and synchronized channel state.</p>
               </div>
               <ul className="project-tags" aria-label="Technologies used">
                 {['Electron', 'WebRTC', 'Socket.IO', 'MySQL', 'JavaScript'].map((tool) => <li key={tool}>{tool}</li>)}

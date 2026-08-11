@@ -4,7 +4,7 @@ import Background from './Background.jsx'
 import EncounterTransition from './EncounterTransition.jsx'
 import pokemonMusic from './assets/Pokémon.mp3'
 
-function MainPortfolio({ muted, onBack, onToggleMute, onVolumeChange, volume }) {
+function MainPortfolio({ onBack, onVolumeChange, volume }) {
   useEffect(() => {
     document.body.classList.add('pixel-view')
     return () => document.body.classList.remove('pixel-view')
@@ -34,7 +34,6 @@ function MainPortfolio({ muted, onBack, onToggleMute, onVolumeChange, volume }) 
 
 function PortfolioApp() {
   const musicRef = useRef(null)
-  const [muted, setMuted] = useState(false)
   const [transitioning, setTransitioning] = useState(false)
   const [volume, setVolume] = useState(.1)
   const [view, setView] = useState('apple')
@@ -45,7 +44,6 @@ function PortfolioApp() {
 
   useEffect(() => {
     const appleView = view === 'apple'
-    document.title = appleView ? 'Portfolio' : 'Portfolio'
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', appleView ? '#07090d' : '#0b100d')
   }, [view])
 
@@ -61,11 +59,6 @@ function PortfolioApp() {
     setView('apple')
   }
 
-  function toggleMute() {
-    musicRef.current.muted = !musicRef.current.muted
-    setMuted(musicRef.current.muted)
-  }
-
   function changeVolume(nextVolume) {
     musicRef.current.volume = nextVolume
     setVolume(nextVolume)
@@ -76,10 +69,8 @@ function PortfolioApp() {
       {view === 'apple'
         ? <Apple onOpenMain={openMain} />
         : <MainPortfolio
-            muted={muted}
             volume={volume}
             onBack={backToApple}
-            onToggleMute={toggleMute}
             onVolumeChange={changeVolume}
           />}
       {transitioning && <EncounterTransition onCovered={finishTransition} />}

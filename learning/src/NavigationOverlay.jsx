@@ -47,21 +47,20 @@ function NavigationOverlay({ onAreaHover, onToggleFightMoves, onOpenDialog }) {
       aria-label="Portfolio navigation"
     >
       {areas.map((area) => (
-        <g key={area.name}>
-          <polygon
-            className="clickable-region"
-            points={area.points}
-            role="link"
-            tabIndex={0}
-            aria-label={area.name}
-            onPointerEnter={() => onAreaHover(area.layer ?? null)}
-            onPointerLeave={() => onAreaHover(null)}
-            onClick={area.activate}
-            onKeyDown={(event) => handleKeyDown(event, area.activate)}
-          >
-            <title>{area.name}</title>
-          </polygon>
-        </g>
+        <polygon
+          className="clickable-region"
+          points={area.points}
+          role="link"
+          tabIndex={0}
+          aria-label={area.name}
+          onPointerEnter={() => onAreaHover(area.layer)}
+          onPointerLeave={() => onAreaHover(null)}
+          onClick={area.activate}
+          onKeyDown={(event) => handleKeyDown(event, area.activate)}
+          key={area.name}
+        >
+          <title>{area.name}</title>
+        </polygon>
       ))}
     </svg>
   )

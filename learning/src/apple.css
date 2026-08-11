@@ -40,7 +40,7 @@ img { display: block; max-width: 100%; }
 .status-dot { display: inline-block; width: .47rem; height: .47rem; margin-right: .55rem; border-radius: 50%; background: #30d158; box-shadow: 0 0 0 .25rem rgba(48,209,88,.13); vertical-align: .05rem; }
 h1, h2, h3, p { text-wrap: pretty; }
 .hero h1 { max-width: 720px; margin: 0; font-size: clamp(3.6rem, 7.2vw, 7rem); font-weight: 720; letter-spacing: -.065em; line-height: .91; }
-.hero h1 span { display: inline-block; margin-right: -.08em; padding-right: .08em; padding-bottom: .04em; color: transparent; background: linear-gradient(115deg, #54a8ff, #75c7ff 55%, #67e8f9); background-clip: text; -webkit-background-clip: text; }
+.hero h1 span { display: inline-block; padding: 0 .1em .06em 0; color: transparent; background: linear-gradient(115deg, #54a8ff, #75c7ff 55%, #67e8f9); background-clip: text; -webkit-background-clip: text; letter-spacing: -.035em; line-height: 1; }
 .hero-intro { max-width: 630px; margin: 2rem 0 0; color: var(--muted); font-size: clamp(1.05rem, 1.5vw, 1.25rem); letter-spacing: -.018em; line-height: 1.55; }
 .hero-actions, .contact-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: .75rem; min-height: 3.15rem; padding: .8rem 1.25rem; border: 0; border-radius: 999px; font-size: .9rem; font-weight: 650; text-decoration: none; cursor: pointer; transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease; }
